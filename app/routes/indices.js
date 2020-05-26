@@ -1,44 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql')
-
+// var mysql = require('mysql')
+var query = require('../db.js');
 /* GET users listing. */
 router.get('/test', function(req, res, next) {
   res.send('respond with a resource');
 });
-
-var pool = mysql.createPool({
-  host:'39.98.131.44',
-  user:'u1',
-  password:'ZUCCdjl!',
-  database:'JS'
-})
-
-var connMethod = function(callback){
-
-}
-
-let query = function( sql, values ) {
-  // 返回一个 Promise
-  return new Promise(( resolve, reject ) => {
-    pool.getConnection(function(err, connection) {
-      if (err) {
-        reject( err )
-      } else {
-        connection.query(sql, values, ( err, rows) => {
-
-          if ( err ) {
-            reject( err )
-          } else {
-            resolve( rows )
-          }
-          // 结束会话
-          connection.release()
-        })
-      }
-    })
-  })
-}
 
 function formatIndex(data){
 	console.log(data)
@@ -56,7 +23,7 @@ function formatIndex(data){
 var sql = 'select type_name,index_name from job_type t, job_index i where i.type_id = t.id'
 
 
-router.get('/type_index',async(req,res)=>{
+router.get('/',async(req,res)=>{
 	let data = {};
 	const rows = await query(sql);
 	for(row of rows){
