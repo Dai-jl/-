@@ -9,8 +9,8 @@ router.get('/test', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-
-router.post('/register',async(req,res)=>{
+//注册
+router.post('/',async(req,res)=>{
 	var sql = 'select * from user where phone = ?'
 	var sql2 = 'insert into user values(?,?)'	
 	var data = {}
@@ -27,7 +27,7 @@ router.post('/register',async(req,res)=>{
 	}
 	res.json({"code":200,"msg":"注册成功"})
 })
-
+//登陆
 router.post('/login',async(req,res)=>{
 	var sql = 'select * from user where phone = ?'
 	var data = {}
@@ -45,5 +45,12 @@ router.post('/login',async(req,res)=>{
 	}
 	res.json({"code":200,"msg":"登录成功"})
 })
+//改密码
+router.put('/{id}',async(req,res) => {
 
+})
+//注销用户
+router.delete('/{id}',async(req,res)=> {
+	
+})
 module.exports = router;

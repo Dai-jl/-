@@ -16,15 +16,20 @@
 
 #### restful API
 
-- indices
+- /indices
 
   ![](img/indices.jpg)
 
-- jobtype
+- /jobtype
 
   ![](img/jobtype.jpg)
 
-- user  ***还没写***
+- /users
+
+  - #登录	预定session、密码加密
+  - POST /users #注册
+  - PUT /users/:id #改密码
+  - DELETE /users/:id #注销用户
 #### 正则表达式
 
 - 判断密码强弱
@@ -50,3 +55,22 @@ console.log(testPassWord(s2));//-> 2
 console.log(testPassWord(s3));//-> 3
 ```
 
+#### NPM
+
+#### Ramda
+
+#### GraphQL
+
+#### Session
+
+#### 搜索联想DOM
+
+
+
+
+
+#### 搜索
+
+​	前端返回关键词列表
+
+​	根据关键词去索引找东西
