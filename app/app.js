@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var session = require('express-session');
+var redisStore = require('connect-redis')(session);
+const redis = require('./redis.js').redis
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var indicesRouter = require('./routes/indices');
@@ -12,12 +16,26 @@ var jobRouter = require('./routes/job');
 
 var app = express();
 
+//session
+app.use(session({
+  store:new redisStore({
+    client:redis,
+    prefix:'hgk'
+  }),
+  cookie:{maxAge:1*60*60*1000},
+  secret:'keyboard cat',
+  resave:true,
+  saveUninitialized:true
+}))
+
+
 //设置允许跨域访问该服务.
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   //Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Methods', '*');
+  res.header("Access-Control-Allow-Credentials",true);
   res.header('Content-Type', 'application/json;charset=utf-8');
   next();
 });
@@ -53,5 +71,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
