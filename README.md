@@ -6,8 +6,6 @@
 
 - 用node-dev 实现热部署 `npm run dev`
 
-
-
 #### 框架
 
 - 前端 vue.js
@@ -58,6 +56,8 @@ console.log(testPassWord(s3));//-> 3
 #### NPM
 
 #### Ramda
+
+​	test——正则表达式检验
 
 #### GraphQL
 

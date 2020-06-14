@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var query = require('../db.js');
-
+var md5 = require('md5')
 
 /* GET users listing. */
 // router.get('/test', function(req, res, next) {
@@ -50,7 +50,7 @@ router.post('/login',async(req,res)=>{
 	if(u === []){
 		res.json({"code":300,"msg":"该手机号未被注册"})
 	}
-	else if(u[0].password !== data.password){
+	else if(md5(u[0].password) !== data.password){
 		console.log(u[0].password)
 		res.json({"code":300,"msg":"密码错误"})
 	}
