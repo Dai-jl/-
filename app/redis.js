@@ -1,5 +1,6 @@
 var ioRedis = require('ioredis');
-var redis = new ioRedis();
+var redis = new ioRedis(6379,'39.98.131.44');
+// var redis = new ioRedis()
 // 默认127.0.0.1:6379
 // redis 链接错误
 redis.on("error", function (error) {

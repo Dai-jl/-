@@ -65,9 +65,23 @@ console.log(testPassWord(s3));//-> 3
 
 #### 搜索联想DOM
 
+#### 回调函数
 
+```js
+router.get('/',(req,res)=>{
+    let data
+    client.get('comptype',function(err,value){
+        data = JSON.parse(value) 
+        console.log(data);
+        res.send(data);
+    })
+    console.log(data) //结果为空，回调函数中不能改变外部变量
+})
+```
 
+​	是因为异步调用，回调函数的赋值语句还没执行，结果就输出了。
 
+​	即使使用了async await，还是无效，为什么呢？？？？？？？？？？？？
 
 #### 搜索
 
