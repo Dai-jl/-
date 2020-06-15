@@ -29,10 +29,12 @@ router.post('/',async(req,res)=>{
     const u = await query(sql,data.phone);
     if(u === []){
         res.json({"code":300,"msg":"该手机号未被注册"})
+        return 
     }
     else if(u[0].password !== data.password){
         console.log(u[0].password)
         res.json({"code":300,"msg":"密码错误"})
+        return 
     }
     req.session.phone = data.phone
     req.session.save();

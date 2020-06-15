@@ -27,6 +27,7 @@ router.post('/',async(req,res)=>{
 	var data = {}
 	data.phone = req.body.phone
 	data.password = req.body.password
+	console.log(data.password)
 	// console.log(data);
 	const u = await query(sql,data.phone);
 	console.log(u)
@@ -64,12 +65,14 @@ router.post('/',async(req,res)=>{
 // 	return res.json({"code":200,"msg":'登出成功'})
 // })
 //改密码
-router.put('/{id}',async(req,res) => {
+router.put('/:id',async(req,res) => {
 	pid = req.body.phone
-	pwd = req.body.password
-	var updatesql = `update user set password = ${pwd} where phone = ${pid}`
-	const u = await query(sql);
-	console.log(u)
+	pwd = String(req.body.password)
+	console.log(pid+"------"+pwd)
+	var updatesql = `update user set password = '${pwd}' where phone = '${pid}'`
+	console.log(updatesql)
+	const u = await query(updatesql);
+	// console.log("111")
 	delete req.session.user;
 	res.json({"code":200,"msg":"修改成功"})
 })
