@@ -39,7 +39,7 @@ router.post('/',async(req,res)=>{
 	req.session.userinfo = data.phone
 	res.json({"code":200,"msg":"注册成功"})
 })
-//登陆
+// //登陆
 router.post('/login',async(req,res)=>{
 	var sql = 'select * from user where phone = ?'
 	var data = {}
@@ -63,13 +63,13 @@ router.get('/logout',function(req,res,next){
 	delete req.session.user;
 	return res.json({"code":200,"msg":'登出成功'})
 })
-//改密码
-router.put('/{id}',async(req,res) => {
-
-})
-//注销用户
-router.delete('/{id}',async(req,res)=> {
+// //改密码
+// router.put('/{id}',async(req,res) => {
 	
-})
+// })
+// //注销用户
+// router.delete('/{id}',async(req,res)=> {
+	
+// })
 
 module.exports = router;

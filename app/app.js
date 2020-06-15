@@ -13,6 +13,7 @@ var usersRouter = require('./routes/users');
 var indicesRouter = require('./routes/indices');
 var jobtypeRouter = require('./routes/jobtype');
 var jobRouter = require('./routes/job');
+var sessionRouter = require('./routes/session');
 
 var app = express();
 
@@ -55,6 +56,7 @@ app.use('/users', usersRouter);
 app.use('/indices',indicesRouter);
 app.use('/jobtype',jobtypeRouter);
 app.use('/job',jobRouter);
+app.use('/session',sessionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
