@@ -30,7 +30,7 @@ router.post('/',async(req,res)=>{
     if(u === []){
         res.json({"code":300,"msg":"该手机号未被注册"})
     }
-    else if(md5(u[0].password) !== data.password){
+    else if(u[0].password !== data.password){
         console.log(u[0].password)
         res.json({"code":300,"msg":"密码错误"})
     }

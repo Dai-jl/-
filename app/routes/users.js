@@ -40,33 +40,39 @@ router.post('/',async(req,res)=>{
 	res.json({"code":200,"msg":"注册成功"})
 })
 // //登陆
-router.post('/login',async(req,res)=>{
-	var sql = 'select * from user where phone = ?'
-	var data = {}
-	data.phone = req.body.phone
-	data.password = req.body.password
-	// console.log(data);
-	const u = await query(sql,data.phone);
-	if(u === []){
-		res.json({"code":300,"msg":"该手机号未被注册"})
-	}
-	else if(md5(u[0].password) !== data.password){
-		console.log(u[0].password)
-		res.json({"code":300,"msg":"密码错误"})
-	}
-	req.session.phone = data.phone
-	req.session.save();
-	res.json({"code":200,"msg":"登录成功"})
-})
-//登出
-router.get('/logout',function(req,res,next){
-	delete req.session.user;
-	return res.json({"code":200,"msg":'登出成功'})
-})
-// //改密码
-// router.put('/{id}',async(req,res) => {
-	
+// router.post('/login',async(req,res)=>{
+// 	var sql = 'select * from user where phone = ?'
+// 	var data = {}
+// 	data.phone = req.body.phone
+// 	data.password = req.body.password
+// 	// console.log(data);
+// 	const u = await query(sql,data.phone);
+// 	if(u === []){
+// 		res.json({"code":300,"msg":"该手机号未被注册"})
+// 	}
+// 	else if(md5(u[0].password) !== data.password){
+// 		console.log(u[0].password)
+// 		res.json({"code":300,"msg":"密码错误"})
+// 	}
+// 	req.session.phone = data.phone
+// 	req.session.save();
+// 	res.json({"code":200,"msg":"登录成功"})
 // })
+// //登出
+// router.get('/logout',function(req,res,next){
+// 	delete req.session.user;
+// 	return res.json({"code":200,"msg":'登出成功'})
+// })
+//改密码
+router.put('/{id}',async(req,res) => {
+	pid = req.body.phone
+	pwd = req.body.password
+	var updatesql = `update user set password = ${pwd} where phone = ${pid}`
+	const u = await query(sql);
+	console.log(u)
+	delete req.session.user;
+	res.json({"code":200,"msg":"修改成功"})
+})
 // //注销用户
 // router.delete('/{id}',async(req,res)=> {
 	
