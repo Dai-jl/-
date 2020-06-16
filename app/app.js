@@ -14,6 +14,7 @@ var indicesRouter = require('./routes/indices');
 var jobtypeRouter = require('./routes/jobtype');
 var jobRouter = require('./routes/job');
 var sessionRouter = require('./routes/session');
+var graphglRouter = require('./routes/graphgl')
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use('/indices',indicesRouter);
 app.use('/jobtype',jobtypeRouter);
 app.use('/job',jobRouter);
 app.use('/session',sessionRouter);
+app.use('/graphql', graphglRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
