@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 
 var session = require('express-session');
 var redisStore = require('connect-redis')(session);
@@ -46,6 +47,7 @@ app.all('*', function (req, res, next) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -58,7 +60,7 @@ app.use('/indices',indicesRouter);
 app.use('/jobtype',jobtypeRouter);
 app.use('/job',jobRouter);
 app.use('/session',sessionRouter);
-app.use('/graphql', graphglRouter)
+app.use('/graphql',cors(), graphglRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
