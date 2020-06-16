@@ -33,7 +33,7 @@ const schema = buildSchema(`
 `)
 
 async function getJob() {
-    var sql = 'select job_name name,comp_name company,sala salary,job_edu.name `require`,job.job_place addr,job_place.city,benefit from job,job_place,job_edu WHERE job.job_place = job_place.id AND job.edu_id = job_edu.id';
+    var sql = 'select job_name name,comp_name company,sala salary,job_edu.name `require`,job_place.city addr,benefit from job,job_place,job_edu WHERE job.job_place = job_place.id AND job.edu_id = job_edu.id';
     var data = []
     const rows = await query(sql)
     // console.log(rows)
