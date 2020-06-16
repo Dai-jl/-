@@ -80,21 +80,21 @@ module.exports = graphqlHTTP({
     graphiql: true
 })
 
-// query{
+query{
   
-//   highPay(limit:9) {
-//     name
-//     company
-//     salary
-//     require
-//     addr
-//     welfare
-//   }
-// }
+  highPay(limit:9) {
+    name
+    company
+    salary
+    require
+    addr
+    welfare
+  }
+}
 
-// query{
-//   indices {
-//     type
-//     index
-//   }
-// }
+query{
+  indices {
+    type
+    index
+  }
+}

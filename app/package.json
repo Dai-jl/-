@@ -1,7 +1,6 @@
 {
-  "name": "app",
-  "version": "0.0.0",
-  "private": true,
+  "name": "daijl2020js",
+  "version": "0.0.1",
   "scripts": {
     "start": "node ./bin/www",
     "dev": "node-dev ./bin/www"
